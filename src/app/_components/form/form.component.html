@@ -1,0 +1,39 @@
+<div>
+    <div class="form-group">
+      <label for="first_name">First Name:</label>
+      <input type="text" [(ngModel)]="formData.firstName" class="form-control"  id="first_name">
+    </div>
+    <div class="form-group">
+        <label for="last_name">Last Name:</label>
+        <input type="text" [(ngModel)]="formData.lastName" class="form-control"  id="last_name">
+      </div>
+      <div class="form-group">
+        <label for="roll_number">Roll Number:</label>
+        <input type="text" [(ngModel)]="formData.rollNumber" class="form-control"  id="roll_number">
+      </div> 
+
+      <div class="form-group">
+        <label for="Result">Result:</label>
+        <input type="text" [(ngModel)]="formData.result" class="form-control"  id="Result">
+      </div> 
+    <button type="submit" (click)="onSubmit(formData)" class="btn btn-primary">Submit</button>
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Roll Number</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obj of studentList">
+        <td>{{obj.firstName}}</td>
+        <td>{{obj.lastName}}</td>
+        <td>{{obj.rollNumber}}</td>
+        <td>{{obj.result}}</td>
+      </tr>
+    </tbody>
+</table>

@@ -22,20 +22,29 @@
 <table class="table table-striped">
     <thead>
       <tr>
+        <th>S.no</th>
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Roll Number</th>
         <th>Result</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let obj of studentList">
-        <td [ngClass]="{'alt-success' : obj.result === 'pass',
-         'alt-danger' : obj.result !== 'pass'}">{{obj.firstName}}</td>
-        <td>{{obj.lastName}}</td>
-        <td>{{obj.rollNumber}}</td>
-        <td [ngStyle]="{'color': obj.result === 'pass' ? 'green' : 'red'}">
-            {{obj.result}}</td>
-      </tr>
+        <ng-container *ngFor="let obj of studentList; let i = index">
+            <tr *ngIf="obj.result === 'pass'">
+                <td>{{i + 1}}</td>
+                <td [ngClass]="{'alt-success' : obj.result === 'pass',
+                'alt-danger' : obj.result !== 'pass'}">{{obj.firstName}}</td>
+                <td>{{obj.lastName}}</td>
+                <td>{{obj.rollNumber}}</td>
+                <td [ngStyle]="{'color': obj.result === 'pass' ? 'green' : 'red'}">
+                    {{obj.result}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="remove(i)">Delete</button>
+                    <button class="btn btn-info" (click)="modify()">Modify</button>
+                </td>
+            </tr>
+        </ng-container>
     </tbody>
 </table>

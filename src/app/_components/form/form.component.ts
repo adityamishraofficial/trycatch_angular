@@ -13,6 +13,7 @@ export class FormComponent {
     rollNumber: '',
     result: ''
   }
+
   studentList: FormData[] = [];
   constructor(){
   }
@@ -27,5 +28,10 @@ export class FormComponent {
       result: ''
     }
   }
-
+  remove(index: any){
+    this.studentList.splice(index, 1)
+  }
+  modify(){
+    // todo
+  }
 }

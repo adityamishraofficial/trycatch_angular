@@ -16,7 +16,7 @@
         <label for="Result">Result:</label>
         <input type="text" [(ngModel)]="formData.result" class="form-control"  id="Result">
       </div> 
-    <button type="submit" (click)="onSubmit(formData)" class="btn btn-primary">Submit</button>
+    <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
 </div>
 
 <table class="table table-striped">
@@ -30,10 +30,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let obj of studentList">
-        <td>{{obj.firstName}}</td>
+        <td [ngClass]="{'alt-success' : obj.result === 'pass',
+         'alt-danger' : obj.result !== 'pass'}">{{obj.firstName}}</td>
         <td>{{obj.lastName}}</td>
         <td>{{obj.rollNumber}}</td>
-        <td>{{obj.result}}</td>
+        <td [ngStyle]="{'color': obj.result === 'pass' ? 'green' : 'red'}">
+            {{obj.result}}</td>
       </tr>
     </tbody>
 </table>

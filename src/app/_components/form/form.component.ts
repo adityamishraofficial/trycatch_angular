@@ -7,20 +7,17 @@ import { FormData } from 'src/app/_models/form.interface';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent {
-  abc: string;
   formData: FormData = {
     firstName: '',
     lastName: '',
     rollNumber: '',
     result: ''
   }
-
-
   studentList: FormData[] = [];
   constructor(){
   }
 
-  onSubmit(formData: FormData){
+  onSubmit(){
     const studentObj = {...this.formData}
     this.studentList.push(studentObj)
     this.formData = {

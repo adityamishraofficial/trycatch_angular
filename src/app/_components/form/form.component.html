@@ -16,35 +16,8 @@
         <label for="Result">Result:</label>
         <input type="text" [(ngModel)]="formData.result" class="form-control"  id="Result">
       </div> 
-    <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+    <button *ngIf="!isEdit" type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+    <button *ngIf="isEdit" type="submit" (click)="onUpdate(formData)" class="btn btn-primary">Update</button>
 </div>
 
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>S.no</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Roll Number</th>
-        <th>Result</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let obj of studentList; let i = index">
-            <tr *ngIf="obj.result === 'pass'">
-                <td>{{i + 1}}</td>
-                <td [ngClass]="{'alt-success' : obj.result === 'pass',
-                'alt-danger' : obj.result !== 'pass'}">{{obj.firstName}}</td>
-                <td>{{obj.lastName}}</td>
-                <td>{{obj.rollNumber}}</td>
-                <td [ngStyle]="{'color': obj.result === 'pass' ? 'green' : 'red'}">
-                    {{obj.result}}</td>
-                <td>
-                    <button class="btn btn-danger" (click)="remove(i)">Delete</button>
-                    <button class="btn btn-info" (click)="modify()">Modify</button>
-                </td>
-            </tr>
-        </ng-container>
-    </tbody>
-</table>
+<app-table [studentList]="studentList"  (studentUpdate)="onEdit($event)"></app-table>

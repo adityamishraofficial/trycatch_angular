@@ -13,8 +13,9 @@ export class FormComponent {
     rollNumber: '',
     result: ''
   }
-
+  isEdit = false;
   studentList: FormData[] = [];
+  currentActivatedIndex = 0
   constructor(){
   }
 
@@ -28,10 +29,23 @@ export class FormComponent {
       result: ''
     }
   }
-  remove(index: any){
-    this.studentList.splice(index, 1)
+
+  onEdit(index: number) {
+    this.currentActivatedIndex = index;
+    this.isEdit = true;
+    this.formData = {...this.studentList[this.currentActivatedIndex]}
   }
-  modify(){
-    // todo
+  onUpdate(formData: FormData) {
+    const studentObj = {...formData}
+    this.studentList[this.currentActivatedIndex] = studentObj;
+    this.isEdit = false;
+    this.formData = {
+      firstName: '',
+      lastName: '',
+      rollNumber: '',
+      result: ''
+    }
+    this.currentActivatedIndex = 0
   }
+ 
 }

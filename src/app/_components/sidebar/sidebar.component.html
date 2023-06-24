@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <div class="col-md-3">
+        <ul>
+            <li *ngFor="let navigation of navigationLink"> 
+                <a [routerLink]="[navigation.path, navigation.id]">
+                    {{navigation.display}}
+                </a>
+            </li>
+        </ul>
+    </div>
+ </div>   

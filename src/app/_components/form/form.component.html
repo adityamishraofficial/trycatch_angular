@@ -1,23 +1,49 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
 <div>
     <div class="form-group">
       <label for="first_name">First Name:</label>
-      <input type="text" [(ngModel)]="formData.firstName" class="form-control"  id="first_name">
+      <input type="text" formControlName="firstName" class="form-control"  id="first_name">
+      <div class="text-danger" *ngIf="submitted && f['firstName'].errors">
+          <div *ngIf="f['firstName'].errors['required']">
+            First Name is required
+          </div>
+          <div *ngIf="f['firstName'].errors['minlength']">
+            First Name must be at least 5 characters 
+          </div>
+      </div>
     </div>
     <div class="form-group">
         <label for="last_name">Last Name:</label>
-        <input type="text" [(ngModel)]="formData.lastName" class="form-control"  id="last_name">
+        <input type="text" formControlName="lastName" class="form-control"  id="last_name">
+        <div class="text-danger" *ngIf="submitted && f['lastName'].errors">
+          <div *ngIf="f['lastName'].errors['required']">
+            Last Name is required
+          </div>
+      </div>
       </div>
       <div class="form-group">
         <label for="roll_number">Roll Number:</label>
-        <input type="text" [(ngModel)]="formData.rollNumber" class="form-control"  id="roll_number">
+        <input type="text" formControlName="rollNumber"  class="form-control"  id="roll_number">
+        <div class="text-danger" *ngIf="submitted && f['rollNumber'].errors">
+          <div *ngIf="f['rollNumber'].errors['required']">
+            Roll Number is required
+          </div>
+      </div>
       </div> 
 
       <div class="form-group">
         <label for="Result">Result:</label>
-        <input type="text" [(ngModel)]="formData.result" class="form-control"  id="Result">
+        <input type="text" formControlName="result" class="form-control"  id="Result">
+        <div class="text-danger" *ngIf="submitted && f['result'].errors">
+          <div *ngIf="f['result'].errors['required']">
+            Result is required
+          </div>
+      </div>
       </div> 
-    <button *ngIf="!isEdit" type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
-    <button *ngIf="isEdit" type="submit" (click)="onUpdate(formData)" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- <button *ngIf="isEdit" type="submit" (click)="onUpdate(formData)" class="btn btn-primary">Update</button> -->
 </div>
+</form>
+<button type="submit" (click)="onUpdate()" class="btn btn-primary">Update</button>
 
-<app-table [studentList]="studentList"  (studentUpdate)="onEdit($event)"></app-table>
+<!-- <app-table [studentList]="studentList"  (studentUpdate)="onEdit($event)"></app-table> -->

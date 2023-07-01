@@ -1,51 +1,47 @@
-import { Component } from '@angular/core';
-import { FormData } from 'src/app/_models/form.interface';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder,  FormGroup,  Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent {
-  formData: FormData = {
-    firstName: '',
-    lastName: '',
-    rollNumber: '',
-    result: ''
+export class FormComponent implements OnInit {
+  studentForm: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder){
   }
-  isEdit = false;
-  studentList: FormData[] = [];
-  currentActivatedIndex = 0
-  constructor(){
+  ngOnInit(): void {
+    this.studentForm = this.formBuilder.group({
+      firstName: [{value:'', disabled: true}, [Validators.required, Validators.minLength(5)]],
+      lastName: ['', Validators.required],
+      rollNumber: ['', Validators.required],
+      result: ['', Validators.required]
+    })
   }
-
+  get f () { return this.studentForm.controls;}
   onSubmit(){
-    const studentObj = {...this.formData}
-    this.studentList.push(studentObj)
-    this.formData = {
-      firstName: '',
-      lastName: '',
-      rollNumber: '',
-      result: ''
+    this.submitted = true;
+    if (this.studentForm.invalid) {
+      return;
     }
+    const payload = this.studentForm.value;
+    console.log('payload', payload)
   }
 
-  onEdit(index: number) {
-    this.currentActivatedIndex = index;
-    this.isEdit = true;
-    this.formData = {...this.studentList[this.currentActivatedIndex]}
+  onUpdate() {
+
+    this.studentForm.setValue({
+      firstName: 'ravi',
+      lastName: 'sharma',
+      rollNumber: '13213',
+      result: 'pass'
+    })
+    // this.studentForm.patchValue({
+    //   firstName: 'aditya',
+    //   lastName: '2342'
+    // })
   }
-  onUpdate(formData: FormData) {
-    const studentObj = {...formData}
-    this.studentList[this.currentActivatedIndex] = studentObj;
-    this.isEdit = false;
-    this.formData = {
-      firstName: '',
-      lastName: '',
-      rollNumber: '',
-      result: ''
-    }
-    this.currentActivatedIndex = 0
-  }
+
  
 }

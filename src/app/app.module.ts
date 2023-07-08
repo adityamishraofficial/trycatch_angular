@@ -16,6 +16,7 @@ import { HttpClientModule } from  '@angular/common/http';
 import { HttpService } from './_services/http.service';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './_components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     CategoryComponent,
     SidebarComponent,
-    DataComponent
+    DataComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,33 +1,9 @@
-<app-header></app-header>
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
 
 <!-- <button (click)="onClick()">Click</button> -->
 
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>email      </th>
-      <th>first_name</th>
-      <th>last_name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-      <ng-container *ngFor="let user of userList; let i = index">
-          <tr>
-             <td>{{user.id}}</td>
-             <td>{{user.email}}</td>
-             <td>{{user.first_name}}</td>
-             <td>{{user.last_name}}</td>
-             <td><button type="button" (click)="onDelete(user.id)" class="btn btn-danger">Delete User</button></td>
-          </tr>
-      </ng-container>
-  </tbody>
-</table>
 
 
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>

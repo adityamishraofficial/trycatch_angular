@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
@@ -10,7 +10,10 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getStudentData(){
-   return this.http.get('https://reqres.in/api/users?page=2').pipe(map( (res: any) => {
+    let headers = new HttpHeaders();
+    const token = String(localStorage.getItem('token'))
+    headers = headers.set('auth', token);
+   return this.http.get('https://reqres.in/api/users?page=2', {headers: headers}).pipe(map( (res: any) => {
     res.success = true;
     if (res.data.length > 5 ) {
       res.success = false;
@@ -29,5 +32,9 @@ export class HttpService {
 
   deleteStudentData(id: any) {
     return this.http.delete('https://reqres.in/api/users/' + id)
+  }
+
+  login(userPayload: any){
+    return this.http.post('https://dummyjson.com/auth/login', userPayload)
   }
 }

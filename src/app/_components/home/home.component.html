@@ -1,2 +1,29 @@
 <p>home works!</p>
 <button (click)="onNavigationToCategory()">Navigate to Category</button>
+
+<app-header></app-header>
+
+<button (click)="onLogout()" type="button" class="btn btn-primary">Logout</button>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>email      </th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let user of userList; let i = index">
+            <tr>
+               <td>{{user.id}}</td>
+               <td>{{user.email}}</td>
+               <td>{{user.first_name}}</td>
+               <td>{{user.last_name}}</td>
+               <td><button type="button" (click)="onDelete(user.id)" class="btn btn-danger">Delete User</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+  </table>
+  

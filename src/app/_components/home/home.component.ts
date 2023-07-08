@@ -18,10 +18,15 @@ export class HomeComponent implements OnInit {
     })
   }  
   onNavigationToCategory(){
-    this._dataService.studentData = {
-      firstName: 'vishal',
-      lastName: 'saini'
-    }
-    this.router.navigateByUrl('/category')
+    // this._dataService.studentData = {
+    //   firstName: 'vishal',`
+    //   lastName: 'saini'
+    // }
+    this._dataService.setStudentValue({title: 'hello world'})
+    // this._dataService.student = {
+    //   firstName: 'vishal',
+    //   lastName: 'saini'
+    // }
+    // this.router.navigateByUrl('/category')
   }
 }

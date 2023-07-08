@@ -44,6 +44,6 @@
     <!-- <button *ngIf="isEdit" type="submit" (click)="onUpdate(formData)" class="btn btn-primary">Update</button> -->
 </div>
 </form>
-<button type="submit" (click)="onUpdate()" class="btn btn-primary">Update</button>
-
+<button type="submit" (click)="onUpdate()" class="mt-5 btn btn-primary">Update</button>
+<p class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</p>
 <!-- <app-table [studentList]="studentList"  (studentUpdate)="onEdit($event)"></app-table> -->

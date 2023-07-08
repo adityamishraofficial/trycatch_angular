@@ -9,10 +9,10 @@ import { DataService } from 'src/app/_services/data.service';
 export class CategoryComponent implements OnInit {
   constructor(private _dataSerive: DataService){}
   ngOnInit(): void {
-    this._dataSerive.studentValue.subscribe(res => {
-      console.log('category studentValue', res)
-    })
-    console.log('Student data', this._dataSerive.studentData)
+    // this._dataSerive.studentValue.subscribe(res => {
+    //   console.log('category studentValue', res)
+    // })
+    // console.log('Student data', this._dataSerive.student)
     // this._dataSerive.unSubStudentValue();
   }
 }
